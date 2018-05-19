@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 2
+  </title>
+</head>
+
+<body>
+
+  <div id="game">
+    <h1>Welcome to Rock Paper Scissors</h1>
+    <h2>Choose R for Rock, P for Paper and S for Scissors</h2>
+  </div>
+
+  <script type="text/javascript">
+
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerChoices = ["r", "p", "s"];
+    var Tie = 0;
+    var Wins = 0;
+    var Loss = 0;
+    var result;
+    var Output;
+    var feedback;
+
+
+
+    console.log(feedback);
+  
+  
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+      // Determines which key was pressed.
+      var userGuess = event.key;
+
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+      // Alerts the key the user pressed (userGuess).
+      console.log("User guess: " + userGuess);
+
+      // Alerts the Computer's guess.
+      console.log("Computer guess: " + computerGuess);
+
+    if ((userGuess === "r") || (userGuess === "p") || (userGuess === "s")) {  
+      //alert(computerGuess);
+      
+      if ((userGuess === "r") && (computerGuess === "r")){
+        Tie= Tie +1;
+        logResult = "Tie";
+      } else if ((userGuess === "r") && (computerGuess === "p")){
+        Loss= Loss +1;
+        logResult = "Loss";
+      } else if ((userGuess === "r") && (computerGuess === "s")){
+        Wins= Wins + 1;
+        logResult = "Win";
+      } else if ((userGuess === "p") && (computerGuess === "r")){
+        Wins= Wins + 1;
+        logResult = "Win";
+      } else if ((userGuess === "p") && (computerGuess === "p")){
+        Tie= Tie +1;
+        logResult = "Tie";
+      } else if ((userGuess === "p") && (computerGuess === "s")){
+        Loss= Loss +1;
+        logResult = "Loss";
+      } else if ((userGuess === "s") && (computerGuess === "r")){
+        Loss= Loss +1;
+        logResult = "Loss";
+      } else if ((userGuess === "s") && (computerGuess === "p")){
+        Wins= Wins + 1;
+        logResult = "Win";
+      } else if ((userGuess === "s") && (computerGuess === "s")){
+        Tie= Tie +1;
+        logResult = "Tie";
+      }
+    Output = ("Wins: " + Wins + " Losses: " + Loss + " Ties:" + Tie);
+    console.log(Output);
+    logResultFun(logResult, Output, userGuess, computerGuess);
+    } else {
+      var docOutput = "<h1>Welcome to Rock Paper Scissors</h1><h2>Choose R for Rock, P for Paper and S for Scissors</h2><br> Invalid Choice: Please Try Again!" ;
+      document.getElementById('game').innerHTML=docOutput;    }
+  
+  };
+
+  function logResultFun(Result , Output, userGuess, computerGuess){
+    if (Result==="Tie") {
+      feedback = "You Tied - Try Again";
+    } else if (Result==="Win") {
+      feedback = "Woo Hoo - WIN";
+    } else {
+      feedback = "BWAHHH You Lose- Maybe next time!";
+    }
+    console.log(feedback);
+    var docOutput = "<h1>Welcome to Rock Paper Scissors</h1><h2>Choose R for Rock, P for Paper and S for Scissors</h2><br>User guess: <strong> " + userGuess + "</strong><br>Computer guess: <strong>" + computerGuess + "</strong><br>" + Output + "<br>" + feedback ;
+ 
+    document.getElementById('game').innerHTML=docOutput;
+  }
+
+  </script>
+
+</body>
+
+</html>
