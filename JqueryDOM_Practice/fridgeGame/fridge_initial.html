@@ -62,41 +62,13 @@
       // Use this array to dynamically create buttons on the screen.
       var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
 
+      var main = $('body');
 
+      var btns = main.find('#buttons');
       // MAJOR TASK #1: DYNAMICALLY CREATE BUTTONS
       // =================================================================================
 
       // 1. Create a for-loop to iterate through the letters array.
-    var $button;
-
-    letters.forEach(function( letter, i ) {
-      $button = $('<button/>', {
-          type: 'button',
-          'class': 'letter-button letter letter-button-color',
-          'data-letter':letter,
-          text: letter,
-          click: function() { window.alert('Hello! My id is '+ this.id); }
-      });
-          $button.appendTo('#buttons');      
-    });
-
-    $(".letter-button").on("click", function(event) {
-      var magnet = $('<div>');
-      magnet.attr("class","letter fridge-color");
-      // magnet.text($(event.target).attr("data-letter"));
-      magnet.text($(this).attr("data-letter"));
-
-      var index=$(this).attr('data-index');
-      magnet.text(letters[index])
-      $("#display").append(magnet);
-    });
-
-
-
-
-
-
-
       // Inside the loop...
 
       // 2. Create a variable named "letterBtn" equal to $("<button>");
@@ -110,6 +82,15 @@
       // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
 
       // Be sure to test that your code works for this major task, before proceeding to the next one!
+
+      for (var i=0; i < letters.length; i++) {
+        var letterBtn = $('<button>');
+        letterBtn.addClass('letter-button letter letter-button-color');
+        letterBtn.attr('data-letter',letters[i]);
+        letterBtn.text(letters[i]);
+        btns.append(letterBtn);
+
+      }
 
       // MAJOR TASK #2: ATTACH ON-CLICK EVENTS TO "LETTER" BUTTONS
       // =================================================================================
@@ -128,6 +109,15 @@
 
       // Be sure to test that your code works for this major task, before proceeding to the next one!
 
+      btns.on('click', '.letter-button', function() {
+        var fridgeMagnet = $('<div>');
+        fridgeMagnet.addClass('letter fridge-color');
+        fridgeMagnet.text($(this).attr('data-letter'));
+        var display = main.find('#display');
+        display.append(fridgeMagnet);
+
+      })
+
       // MAJOR TASK #3: ATTACH ON-CLICK EVENTS TO "CLEAR" BUTTON
       // =================================================================================
 
@@ -136,8 +126,12 @@
       // Inside the on-click event...
 
       // 13. Use the jQuery "empty()" method to clear the contents of the "#display" div.
-
-    });
+ 
+      main.on('click', '#clear', function() {
+        main.find('#display').empty();
+      });
+      
+  });
   </script>
 </body>
 
