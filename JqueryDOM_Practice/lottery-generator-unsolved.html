@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trigger Random</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Added a link to Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<style>
+  .letter-button:nth-child(even) {color: red;}
+  .letter-button:nth-child(odd) {color: blue;}
+</style>
+
+</head>
+<body>
+
+  <div class="jumbotron">
+
+    <h1 class="text-center">Generate a Random Number!</h1>
+
+    <div class="text-center">
+
+      <!-- Here we have our button for generating random numbers (#random-button) -->
+      <button id="random-button" class="btn btn-primary btn-lg"><h1><span class="fa fa-question"></span></h1></button>
+      
+    </div>
+
+  </div>
+
+  <!-- Here we have div called "random-number" where our random number will go -->
+  <h1 class="text-center" id="random-number"></h1>
+
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+
+      // CREATE THE MISSING CODE HERE. Your code should add content to the random-number div.
+      // ...
+
+      $( "#random-button" ).click(function() {
+      console.log( "Handler for .click() called." );
+
+      var lotteryNumber = '';
+
+          for (var i=0; i<9; i++){
+              var random = Math.floor(Math.random() * 10);
+              lotteryNumber = lotteryNumber + random;
+          }
+
+          var letterBtn = $("<button>");
+          // 3. Then give each "letterBtn" the following classes: "letter-button" "letter" "letter-button-color".
+          letterBtn.addClass("letter-button letter letter-button-color");
+          // 4. Then give each "letterBtn" a data-attribute called "data-letter".
+          letterBtn.attr("data-letter", i);
+          // 5. Then give each "letterBtns" a text equal to "letters[i]".
+          letterBtn.text(lotteryNumber);
+          // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
+          $("#random-number").prepend(letterBtn);
+          $("#random-number").prepend("&nbsp;");
+
+          $("#random-number").prepend("<br><hr>" + lotteryNumber);
+
+
+
+      });
+      // ...
+
+    });
+
+  </script>
+  
+</body>
+</html>
