@@ -43,15 +43,22 @@ var score = 0;
 // 1 substitution player and then will print each players stats afterwards
 var createPlayer = function() {
   // if the length of the team array is 3 or higher, no more questions will be asked
+
   if (starters.length + subs.length < 3) {
     console.log("\nNEW PLAYER!\n");
     inquirer.prompt([{
       name: "name",
       message: "Player's Name: "
     }, {
-      name: "position",
-      message: "Player's position: "
-    }, {
+        name: "position",
+        message: "Player's position:(Forward, Back, Striker, Goalkeeper)",
+        validate: function(value) {
+          if ((value).toLowerCase() === 'forward' || (value).toLowerCase() === 'back' || (value).toLowerCase() === 'striker' || (value).toLowerCase() === 'goalkeeper') {
+            return true;
+          }
+          return false;
+        }
+      }, {
       name: "offense",
       message: "Player's Offensive Ability: ",
       validate: function(value) {

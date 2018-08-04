@@ -50,7 +50,13 @@ var createPlayer = function() {
         message: "Player's Name: "
       }, {
         name: "position",
-        message: "Player's position: "
+        message: "Player's position: (HB, RB, QB)",
+        validate: function(value) {
+          if ((value).toLowerCase() === 'hb' || (value).toLowerCase() === 'qb' || (value).toLowerCase() === 'rb' ){
+            return true;
+          }
+          return false;
+        }
       }, {
         name: "offense",
         message: "Player's Offensive Ability: ",
